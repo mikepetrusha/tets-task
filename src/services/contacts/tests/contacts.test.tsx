@@ -17,7 +17,10 @@ describe('useContactsService', () => {
   it('fetches contacts successfully', async () => {
     mockFetch.mockResolvedValueOnce({
       ok: true,
-      json: () => Promise.resolve({ responseObject: [{ id: 1, name: 'John Doe' }] })
+      json: () =>
+        Promise.resolve({
+          responseObject: [{ id: '1', firstname: 'test', lastname: 'test', email: 'dafs' }]
+        })
     });
 
     let state;
@@ -26,8 +29,11 @@ describe('useContactsService', () => {
       state = result;
       await result.getContacts();
     });
+    state = useContactsService.getState();
 
-    expect(state.contacts).toEqual([]);
+    expect(state.contacts).toEqual([
+      { id: '1', firstname: 'test', lastname: 'test', email: 'dafs' }
+    ]);
     expect(state.isLoading).toBeFalsy();
     expect(mockFetch).toHaveBeenCalledWith('http://example.com/api/contacts');
   });
@@ -35,40 +41,60 @@ describe('useContactsService', () => {
   it('add contact successfully', async () => {
     mockFetch.mockResolvedValueOnce({
       ok: true,
-      json: () => Promise.resolve({ responseObject: [{ id: 1, name: 'John Doe' }] })
+      json: () =>
+        Promise.resolve({
+          responseObject: { id: '2', firstname: 'test', lastname: 'test', email: 'dafs' }
+        })
     });
 
     let state;
     await act(async () => {
       const result = useContactsService.getState();
       state = result;
-      await result.addContact({ id: 1, name: 'John Doe' });
+      await result.addContact({ id: '2', firstname: 'test', lastname: 'test', email: 'dafs' });
     });
 
-    expect(state.contacts).toEqual([{ id: 1, name: 'John Doe' }]);
+    state = useContactsService.getState();
+
+    expect(state.contacts).toEqual([
+      { id: '1', firstname: 'test', lastname: 'test', email: 'dafs' },
+      { id: '2', firstname: 'test', lastname: 'test', email: 'dafs' }
+    ]);
     expect(state.isLoading).toBeFalsy();
   });
 
   it('edit contact successfully', async () => {
     mockFetch.mockResolvedValueOnce({
       ok: true,
-      json: () => Promise.resolve({ responseObject: [{ id: 1, name: 'John Doe' }] })
+      json: () =>
+        Promise.resolve({
+          responseObject: { id: '1', firstname: 'testnew', lastname: 'test', email: 'dafs' }
+        })
     });
 
     let state;
     await act(async () => {
       const result = useContactsService.getState();
       state = result;
-      await result.editContact({ id: '1', firstname: 'test', lastname: 'test', email: 'dafs' });
+      await result.editContact({ id: '1', firstname: 'testnew', lastname: 'test', email: 'dafs' });
     });
 
+    state = useContactsService.getState();
+
+    expect(state.contacts).toEqual([
+      { id: '2', firstname: 'test', lastname: 'test', email: 'dafs' },
+      { id: '1', firstname: 'testnew', lastname: 'test', email: 'dafs' }
+    ]);
     expect(state.isLoading).toBeFalsy();
   });
 
   it('deletes contacts successfully', async () => {
     mockFetch.mockResolvedValueOnce({
       ok: true,
-      json: () => Promise.resolve({ responseObject: [{ id: 1, name: 'John Doe' }] })
+      json: () =>
+        Promise.resolve({
+          responseObject: { id: '1', firstname: 'testnew', lastname: 'test', email: 'dafs' }
+        })
     });
 
     let state;
@@ -78,6 +104,11 @@ describe('useContactsService', () => {
       await result.deleteContact('1');
     });
 
+    state = useContactsService.getState();
+
+    expect(state.contacts).toEqual([
+      { id: '2', firstname: 'test', lastname: 'test', email: 'dafs' }
+    ]);
     expect(state.isLoading).toBeFalsy();
   });
 });
