@@ -1,6 +1,7 @@
 import { act } from '@testing-library/react';
 
 import { useContactsService } from '../contacts.service';
+import { error } from 'console';
 
 jest.mock('@/config/constants', () => ({
   API_URL: 'http://example.com/api'
@@ -12,6 +13,71 @@ global.fetch = mockFetch;
 describe('useContactsService', () => {
   beforeEach(() => {
     jest.clearAllMocks();
+  });
+
+  it('error when fetching', async () => {
+    const error = new Error('failed to fetch');
+    mockFetch.mockRejectedValueOnce(error);
+
+    let state;
+    await act(async () => {
+      const result = useContactsService.getState();
+      state = result;
+      await result.getContacts();
+    });
+    state = useContactsService.getState();
+
+    expect(state.contacts).toEqual([]);
+    expect(state.isLoading).toBeFalsy();
+    expect(mockFetch).toHaveBeenCalledWith('http://example.com/api/contacts');
+  });
+
+  it('error when fetching', async () => {
+    const error = new Error('failed to fetch');
+    mockFetch.mockRejectedValueOnce(error);
+
+    let state;
+    await act(async () => {
+      const result = useContactsService.getState();
+      state = result;
+      await result.addContact({ firstname: 'test', lastname: 'test', email: 'dafs' });
+    });
+    state = useContactsService.getState();
+
+    expect(state.contacts).toEqual([]);
+    expect(state.isLoading).toBeFalsy();
+  });
+
+  it('error when fetching', async () => {
+    const error = new Error('failed to fetch');
+    mockFetch.mockRejectedValueOnce(error);
+
+    let state;
+    await act(async () => {
+      const result = useContactsService.getState();
+      state = result;
+      await result.deleteContact('2');
+    });
+    state = useContactsService.getState();
+
+    expect(state.contacts).toEqual([]);
+    expect(state.isLoading).toBeFalsy();
+  });
+
+  it('error when fetching', async () => {
+    const error = new Error('failed to fetch');
+    mockFetch.mockRejectedValueOnce(error);
+
+    let state;
+    await act(async () => {
+      const result = useContactsService.getState();
+      state = result;
+      await result.editContact({ id: '1', firstname: 'test', lastname: 'test', email: 'dafs' });
+    });
+    state = useContactsService.getState();
+
+    expect(state.contacts).toEqual([]);
+    expect(state.isLoading).toBeFalsy();
   });
 
   it('fetches contacts successfully', async () => {

@@ -14,3 +14,5 @@ exports[`renders correctly 1`] = `
   </div>
 </div>
 `;
+
+exports[`renders correctly 2`] = `null`;

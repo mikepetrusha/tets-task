@@ -14,3 +14,9 @@ exports[`renders correctly 1`] = `
   </div>
 </div>
 `;
+
+exports[`renders test correctly 1`] = `
+<div>
+  test
+</div>
+`;

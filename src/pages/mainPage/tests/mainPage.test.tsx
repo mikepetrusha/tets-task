@@ -49,7 +49,7 @@ jest.mock('@/components/edit-modal/edit-modal', () => ({
   useEditModal: () => [jest.fn()]
 }));
 
-describe('Gallery page', () => {
+describe('Main page', () => {
   it('should render Cards', async () => {
     render(<MainPage />);
     await waitFor(() => {

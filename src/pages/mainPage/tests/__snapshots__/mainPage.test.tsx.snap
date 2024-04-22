@@ -5,7 +5,7 @@ exports[`renders correctly 1`] = `
   className="sc-fHejqy cbXTTA"
 >
   <div
-    className="sc-hIPBNq iqogkL"
+    className="sc-dJGMql ivFnca"
   >
     <button
       className="sc-hLQSwg euuwXi"
@@ -15,7 +15,7 @@ exports[`renders correctly 1`] = `
     </button>
   </div>
   <div
-    className="sc-dmXWDj UnVpE"
+    className="sc-hIPBNq jJWZLk"
   >
     <button
       className="sc-hLQSwg imjtzi"
@@ -28,7 +28,7 @@ exports[`renders correctly 1`] = `
     className="sc-blmEgr guBWWC"
   >
     <button
-      className="sc-dJGMql GIEgC"
+      className="sc-ifyrAs fmNnEt"
       onClick={[Function]}
     >
       <div
@@ -50,7 +50,7 @@ exports[`renders correctly 1`] = `
       </div>
     </button>
     <button
-      className="sc-dJGMql GIEgC"
+      className="sc-ifyrAs fmNnEt"
       onClick={[Function]}
     >
       <div
@@ -72,7 +72,7 @@ exports[`renders correctly 1`] = `
       </div>
     </button>
     <button
-      className="sc-dJGMql GIEgC"
+      className="sc-ifyrAs fmNnEt"
       onClick={[Function]}
     >
       <div
