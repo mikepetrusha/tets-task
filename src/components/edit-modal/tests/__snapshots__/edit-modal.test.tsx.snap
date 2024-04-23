@@ -2,14 +2,14 @@
 
 exports[`renders correctly 1`] = `
 <div
-  className="sc-csKJxZ hIcYGP"
+  className="sc-ktwOfi dSPMWs"
 >
   <div
-    className="sc-kFCroH fvwTMG"
+    className="sc-eTNRI eHkrbZ"
     data-testid="test-spinner"
   >
     <div
-      className="sc-irLvIq bvdhtb"
+      className="sc-brSamD eQuigN"
     />
   </div>
 </div>

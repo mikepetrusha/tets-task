@@ -32,11 +32,6 @@ export const Input = styled.input<IStyledInputProps>`
         opacity: 1;
       }
 
-      ${$error &&
-      `
-      border: 1px solid ${theme.palette?.error};
-      `}
-
       @media (max-width: ${theme.breakpoints?.md}) {
         padding: 8px 22px 8px 12px;
       }

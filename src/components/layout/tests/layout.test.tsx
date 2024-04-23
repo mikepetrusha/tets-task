@@ -1,4 +1,5 @@
 import { act } from '@testing-library/react';
+import { createRoot, Root } from 'react-dom/client';
 import renderer from 'react-test-renderer';
 
 import { App } from '@/App';

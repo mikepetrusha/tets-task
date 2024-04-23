@@ -1,9 +1,14 @@
+import { act } from '@testing-library/react';
+import { title } from 'process';
 import renderer from 'react-test-renderer';
 
-import { CreateModal } from '../create-modal';
 import { createModalHook } from '@/hooks/createModalHook';
+
+import { fireEvent, render, screen } from '../../../../unit-tests';
+import { CreateModal } from '../create-modal';
 import { ICreateModalProps } from '../create-modal.types';
-import { act } from '@testing-library/react';
+
+const onCloseMock = jest.fn();
 
 it('renders correctly', () => {
   const tree = renderer
@@ -22,7 +27,6 @@ it('renders correctly', async () => {
     const TestComp = () => {
       const [openModal] = useCreateModalTest();
       openModal();
-      /* fire events that update state */
       return <div>test</div>;
     };
     const tree = renderer.create(<TestComp />).toJSON();

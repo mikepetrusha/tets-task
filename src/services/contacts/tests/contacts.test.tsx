@@ -1,7 +1,7 @@
 import { act } from '@testing-library/react';
+import { error } from 'console';
 
 import { useContactsService } from '../contacts.service';
-import { error } from 'console';
 
 jest.mock('@/config/constants', () => ({
   API_URL: 'http://example.com/api'
